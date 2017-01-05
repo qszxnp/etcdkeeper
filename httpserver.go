@@ -10,6 +10,7 @@ import(
 	"time"
 	"flag"
 	"strconv"
+	"fmt"
 )
 
 func main() {
@@ -26,6 +27,7 @@ func main() {
 	}
 	http.Handle("/", http.FileServer(http.Dir(wd))) // view static directory
 
+	fmt.Printf("listening on %s:%d\n", *host, *port)
 	err = http.ListenAndServe(*host + ":" + strconv.Itoa(*port), nil)
 	if err != nil {
 		log.Fatal(err)
